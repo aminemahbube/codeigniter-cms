@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Gerçek dosya veya dizin değilse işlemleri yönlendir
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Tüm istekleri index.php'ye yönlendir
+# $1 işareti dashboard/test urlsine denk geliyor 
+RewriteRule ^(.*)$ index.php/$1 [L]
