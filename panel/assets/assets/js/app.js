@@ -552,11 +552,21 @@
 }(jQuery, window);
 
 // initialize app
-+function($, window) { 'use strict';
-	window.app.init();
-	window.app.menubar.init();
-	window.app.navbar.init();
-	window.app.customizer.init();
++function ($, window) {
+    'use strict';
+    window.app.init();
+
+    window.app.menubar.setTheme("dark");
+    window.app.menubar.applyTheme();
+
+    window.app.navbar.setTheme("danger");
+    window.app.navbar.applyTheme();
+
+    window.app.saveSettings();
+
+    window.app.menubar.init();
+    window.app.navbar.init();
+    window.app.customizer.init();
 }(jQuery, window);
 
 // other
