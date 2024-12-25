@@ -2,7 +2,7 @@
 <div class="col-md-12">
 <h4 class="m-b-lg">
     Ürün Listesi
-    <a href="#" class="btn pull-right btn-outline btn-info btn-xs"><i class="fa fa-plus"></i> Yeni Ekle</a>
+    <a href="<?php echo base_url("product/new_form"); ?>" class="btn pull-right btn-outline btn-info btn-xs"><i class="fa fa-plus"></i> Yeni Ekle</a>
 </h4>
 </div>
 <div class="col-md-12">
@@ -12,7 +12,7 @@
 
                 <div class="alert alert-warning text-center">
 								<h5 class="alert-title">Kayıt Bulunamadı</h5>
-								<p>Burada herhangi bir veri bulunmamaktadır. Eklemek için lütfen <a href="#">tıklayınız.</a> </p>
+								<p>Burada herhangi bir veri bulunmamaktadır. Eklemek için lütfen <a href="<?php echo base_url("product/new_form"); ?>">tıklayınız.</a> </p>
 							</div>
                     
                 <?php } else { ?>        
