@@ -12,6 +12,9 @@
 							<div class="form-group">
 								<label>Başlık</label>
 								<input class="form-control" placeholder="Başlık" name="title">
+								<?php if(isset($form_error)){ ?>
+									<small class="input-form-error"><?php echo form_error("title"); ?></small>
+								<?php } ?>		
 							</div>
 							<div class="form-group">
 								<label>Açıklama</label>
@@ -21,5 +24,6 @@
 						<a href="<?php echo base_url("product"); ?> " class="btn btn-md btn-danger btn-outline">İptal</a>
                         </form>
 					</div><!-- .widget-body -->
-				</div><!-- .widget -->			</div><!-- END column -->
+				</div><!-- .widget -->			
+			</div><!-- END column -->
 </div>
