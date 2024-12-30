@@ -30,6 +30,7 @@ class Product extends CI_Controller
     }
 
     public function new_form(){
+
         $viewData=new stdClass();
 
         //View'e gönderilecek Değişkenlerin set edilmesi
@@ -63,7 +64,7 @@ class Product extends CI_Controller
                 array(
                     "title"     => $this->input->post("title"),
                     "description" => $this->input->post("description"),
-                    "url"         => "test...",
+                    "url"         => convertToSEO($this->input->post("title")),
                     
                     "isActive"    => 1,
                     "createdAt"   => date("Y-m-d H:i:s")
