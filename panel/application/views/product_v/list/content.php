@@ -48,12 +48,13 @@
                                     />
 							    </td>
                                 <td>
-                                    <a href="<?php echo base_url("product/update_form/$item->id"); ?>" class="btn btn-primary btn-sm btn-outline "><i class="fa fa-pencil-square"></i> Düzenle</a>
+                                    <a href="<?php echo base_url("product/update_form/$item->id"); ?>" class="btn btn-primary btn-xs btn-outline "><i class="fa fa-pencil-square"></i> Düzenle</a>
 								<button 
                                     data-url="<?php echo base_url("product/delete/$item->id"); ?>"
-                                    class="btn btn-purple btn-sm btn-outline remove-btn">
+                                    class="btn btn-danger btn-xs btn-outline remove-btn">
                                     <i class="fa fa-trash"></i> Sil
                                 </button>
+                                <a href="<?php echo base_url("product/image_form/$item->id"); ?>" class="btn btn-dark btn-xs btn-outline "><i class="fa fa-image"></i> Resimler</a>
                                 </td>
                             </tr>
                     
