@@ -44,8 +44,12 @@
                                     />
 							    </td>
                                 <td>
-                                    <a href="<?php echo base_url("product/update_form/$item->id"); ?>" class="btn btn-primary btn-sm btn-outline me-2"><i class="fa fa-pencil-square"></i> Düzenle</a>
-								    <a href="<?php echo base_url("product/delete/$item->id"); ?>" class="btn btn-purple btn-sm btn-outline me-2"><i class="fa fa-trash"></i> Sil</a>
+                                    <a href="<?php echo base_url("product/update_form/$item->id"); ?>" class="btn btn-primary btn-sm btn-outline "><i class="fa fa-pencil-square"></i> Düzenle</a>
+								<button 
+                                    data-url="<?php echo base_url("product/delete/$item->id"); ?>"
+                                    class="btn btn-purple btn-sm btn-outline remove-btn">
+                                    <i class="fa fa-trash"></i> Sil
+                                </button>
                                 </td>
                             </tr>
                     
