@@ -24,6 +24,16 @@
     <div class="col-md-12">
         <div class="widget">
             <div class="widget-body">
+
+            <?php if(empty($item_images)) { ?>
+
+                <div class="alert alert-warning text-center">
+                <h5 class="alert-title">Resim Bulunamadı</h5>
+                <p>Burada herhangi bir resim bulunmamaktadır.</p>
+            </>
+    
+            <?php } else { ?>     
+
                 <table class="table table-bordered table-striped table-hover pictures_list">
                     <thead>
                         <th>#id</th>
@@ -34,108 +44,41 @@
                     </thead>
                     <tbody>
 
-                        <tr>
-                            <td class="w100 text-center">#1</td>
-                            <td class="w100 text-center">
-                                <img width="30" src="https://www.w3schools.com/html/img_chania.jpg" alt="" class="img-responsive">
-                            </td>
-                            <td>deneme-urunu.jpg</td>
-                            <td class="w100 text-center">
-                                <input
-                                    data-url="<?php echo base_url("product/isActiveSetter/"); ?>"
-                                    class="isActive"
-                                    type="checkbox"
-                                    data-switchery
-                                    data-color="#10c469"
-                                    <?php echo (true) ? "checked" : ""; ?>
-                                />
-                            </td>
-                            <td class="w100 text-center">
-                                <button
-                                    data-url="<?php echo base_url("product/delete/"); ?>"
-                                    class="btn btn-sm btn-danger btn-outline remove-btn btn-block">
-                                    <i class="fa fa-trash"></i> Sil
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="w100 text-center">#1</td>
-                            <td class="w100 text-center">
-                                <img width="30" src="https://www.w3schools.com/html/img_chania.jpg" alt="" class="img-responsive">
-                            </td>
-                            <td>deneme-urunu.jpg</td>
-                            <td class="w100 text-center">
-                                <input
-                                    data-url="<?php echo base_url("product/isActiveSetter/"); ?>"
-                                    class="isActive"
-                                    type="checkbox"
-                                    data-switchery
-                                    data-color="#10c469"
-                                    <?php echo (true) ? "checked" : ""; ?>
-                                />
-                            </td>
-                            <td class="w100 text-center">
-                                <button
-                                    data-url="<?php echo base_url("product/delete/"); ?>"
-                                    class="btn btn-sm btn-danger btn-outline remove-btn btn-block">
-                                    <i class="fa fa-trash"></i> Sil
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="w100 text-center">#1</td>
-                            <td class="w100 text-center">
-                                <img width="30" src="https://www.w3schools.com/html/img_chania.jpg" alt="" class="img-responsive">
-                            </td>
-                            <td>deneme-urunu.jpg</td>
-                            <td class="w100 text-center">
-                                <input
-                                    data-url="<?php echo base_url("product/isActiveSetter/"); ?>"
-                                    class="isActive"
-                                    type="checkbox"
-                                    data-switchery
-                                    data-color="#10c469"
-                                    <?php echo (true) ? "checked" : ""; ?>
-                                />
-                            </td>
-                            <td class="w100 text-center">
-                                <button
-                                    data-url="<?php echo base_url("product/delete/"); ?>"
-                                    class="btn btn-sm btn-danger btn-outline remove-btn btn-block">
-                                    <i class="fa fa-trash"></i> Sil
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="w100 text-center">#1</td>
-                            <td class="w100 text-center">
-                                <img width="30" src="https://www.w3schools.com/html/img_chania.jpg" alt="" class="img-responsive">
-                            </td>
-                            <td>deneme-urunu.jpg</td>
-                            <td class="w100 text-center">
-                                <input
-                                    data-url="<?php echo base_url("product/isActiveSetter/"); ?>"
-                                    class="isActive"
-                                    type="checkbox"
-                                    data-switchery
-                                    data-color="#10c469"
-                                    <?php echo (true) ? "checked" : ""; ?>
-                                />
-                            </td>
-                            <td class="w100 text-center">
-                                <button
-                                    data-url="<?php echo base_url("product/delete/"); ?>"
-                                    class="btn btn-sm btn-danger btn-outline remove-btn btn-block">
-                                    <i class="fa fa-trash"></i> Sil
-                                </button>
-                            </td>
-                        </tr>
+                    <?php foreach($item_images as $image){ ?> 
 
-
+                        <tr>
+                            <td class="w100 text-center">#<?php echo $image->id; ?></td>
+                            <td class="w100 text-center">
+                                <img width="30" src="<?php echo base_url("uploads/{$viewFolder}/$image->img_url"); ?>" alt="<?php echo $image->img_url; ?>" class="img-responsive">
+                            </td>
+                            <td><?php echo $image->img_url; ?></td>
+                            <td class="w100 text-center">
+                                <input
+                                    data-url="<?php echo base_url("product/isActiveSetter/"); ?>"
+                                    class="isActive"
+                                    type="checkbox"
+                                    data-switchery
+                                    data-color="#10c469"
+                                    <?php echo ($image->id) ? "checked" : ""; ?>
+                                />
+                            </td>
+                            <td class="w100 text-center">
+                                <button
+                                    data-url="<?php echo base_url("product/delete/"); ?>"
+                                    class="btn btn-sm btn-danger btn-outline remove-btn btn-block">
+                                    <i class="fa fa-trash"></i> Sil
+                                </button>
+                            </td>
+                        </tr>
+                        
+                    <?php  } ?>        
 
                     </tbody>
 
                 </table>
+
+            <?php } ?>
+
             </div><!-- .widget-body -->
         </div><!-- .widget -->
     </div><!-- END column -->
