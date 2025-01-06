@@ -8,7 +8,7 @@
 
     <table class="table table-bordered table-striped table-hover pictures_list">
         <thead>
-        <td><i class="fa fa-reorder"></i></td>
+        <td class="order"><i class="fa fa-reorder"></i></td>
         <th>#id</th>
         <th>Görsel</th>
         <th>Resim Adı</th>
@@ -21,8 +21,8 @@
         <?php foreach($item_images as $image){ ?>
 
             <tr id="ord-<?php echo $image->id; ?>">
-                <td><i class="fa fa-reorder"></i></td>
-                <td class="w100 text-center">#<?php echo $image->id; ?></td>
+                <td class="order w50"><i class="fa fa-reorder"></i></td>
+                <td class="w50 text-center">#<?php echo $image->id; ?></td>
                 <td class="w100 text-center">
                     <img width="30" src="<?php echo base_url("uploads/{$viewFolder}/$image->img_url"); ?>" alt="<?php echo $image->img_url; ?>" class="img-responsive">
                 </td>

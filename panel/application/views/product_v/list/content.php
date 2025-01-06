@@ -17,10 +17,10 @@
                     
                 <?php } else { ?>        
 
-					<table class="table table-hover table-striped content-container">
+					<table class="table table-hover table-striped table-bordered content-container">
 						<thead>
-                            <th><i class="fa fa-reorder"></i></th>
-                            <th>#id</th>
+                            <th class="order"><i class="fa fa-reorder"></i></th>
+                            <th class="w50">#id</th>
                             <th>Başlık</th>
                             <th>url</th>
                             <th>Açıklama</th>
@@ -32,9 +32,9 @@
                             <?php foreach($items as $item) { ?>
                             
                                 <tr id="ord-<?php echo $item->id; ?>">
-                                <td><i class="fa fa-reorder"></i></td>
-                                <td>#<?php echo $item->id; ?></td>
-                                <td><?php echo $item->title; ?></td>
+                                <td class="order"><i class="fa fa-reorder"></i></td>
+                                <td class="w50 text-center">#<?php echo $item->id; ?></td>
+                                <td class="w100 text-center"><?php echo $item->title; ?></td>
                                 <td><?php echo $item->url; ?></td>
                                 <td><?php echo $item->description; ?></td>
                                 <td>
@@ -47,14 +47,14 @@
                                     <?php echo ($item->isActive) ? "checked" : ""; ?>
                                     />
 							    </td>
-                                <td>
-                                    <a href="<?php echo base_url("product/update_form/$item->id"); ?>" class="btn btn-primary btn-xs btn-outline "><i class="fa fa-pencil-square"></i> Düzenle</a>
+                                <td class="order">
+                                    <a href="<?php echo base_url("product/update_form/$item->id"); ?>" class="btn btn-primary btn-sm btn-outline "><i class="fa fa-pencil-square"></i> Düzenle</a>
 								<button 
                                     data-url="<?php echo base_url("product/delete/$item->id"); ?>"
-                                    class="btn btn-danger btn-xs btn-outline remove-btn">
+                                    class="btn btn-danger btn-sm btn-outline remove-btn">
                                     <i class="fa fa-trash"></i> Sil
                                 </button>
-                                <a href="<?php echo base_url("product/image_form/$item->id"); ?>" class="btn btn-dark btn-xs btn-outline "><i class="fa fa-image"></i> Resimler</a>
+                                <a href="<?php echo base_url("product/image_form/$item->id"); ?>" class="btn btn-dark btn-sm btn-outline "><i class="fa fa-image"></i> Resimler</a>
                                 </td>
                             </tr>
                     
