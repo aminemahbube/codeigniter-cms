@@ -50,6 +50,34 @@ class News extends CI_Controller
         $this->load->library("form_validation");
 
         // Kurallar yazilir..
+
+        $news_type = $this->input->post("news_type");
+
+        if($news_type == "image"){
+
+            if($_FILES["img_url"]["name"] == ""){
+
+                $alert = array(
+                    "title" => "İşlem Başarısız",
+                    "text" => "Lütfen bir görsel seçiniz",
+                    "type"  => "error"
+                );
+
+                // İşlemin Sonucunu Session'a yazma işlemi...
+                $this->session->set_flashdata("alert", $alert);
+
+                redirect(base_url("news/new_form"));
+
+                die();
+            }
+
+
+        } else if($news_type == "video"){
+
+            $this->form_validation->set_rules("video_url", "Video URL", "required|trim");
+
+        }
+
         $this->form_validation->set_rules("title", "Başlık", "required|trim");
 
         $this->form_validation->set_message(
@@ -59,13 +87,14 @@ class News extends CI_Controller
         );
 
         // Form Validation Calistirilir..
-        // TRUE - FALSE
         $validate = $this->form_validation->run();
 
-        // Monitör Askısı
-        // monitor-askisi
-
         if($validate){
+
+
+            echo "kayit islemleri baslasin";
+
+            die();
 
             $insert = $this->news_model->add(
                 array(
@@ -90,7 +119,7 @@ class News extends CI_Controller
             } else {
 
                 $alert = array(
-                    "title" => "İşlem Başarılı",
+                    "title" => "İşlem Başarısız",
                     "text" => "Kayıt Ekleme sırasında bir problem oluştu",
                     "type"  => "error"
                 );
@@ -109,6 +138,7 @@ class News extends CI_Controller
             $viewData->viewFolder = $this->viewFolder;
             $viewData->subViewFolder = "add";
             $viewData->form_error = true;
+            $viewData->news_type = $news_type;
 
             $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
         }
