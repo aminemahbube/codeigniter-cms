@@ -40,7 +40,25 @@
                                 <td><?php echo $item->url; ?></td>
                                 <td><?php echo $item->description; ?></td>
                                 <td><?php echo $item->news_type; ?></td>
-                                <td>Görsel Gelecek</td>
+                                <td>
+                                    <?php if($item->news_type == "image") { ?>
+                                        <div style="text-align: center;">
+                                        <img width="100" src="<?php echo base_url("uploads/$viewFolder/$item->img_url"); ?>"
+                                        alt=""
+                                        class="img-rounded">
+                                    
+                                    <?php } if ($item->news_type == "video") { ?>
+
+                                    <iframe
+                                        height="150"
+                                        src="<?php echo $item->video_url; ?>"
+                                        gesture="media"
+                                        allow="encrypted-media"
+                                        allowfullscreen>
+                                    </iframe>
+                                    
+                                    <?php } ?>
+                                </td>
                                 <td>
                                     <input 
                                     data-url="<?php echo base_url("news/isActiveSetter/$item->id"); ?>"
