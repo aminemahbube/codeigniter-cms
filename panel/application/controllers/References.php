@@ -180,102 +180,11 @@ class References extends CI_Controller
 
     }
 
-    public function update_($id){
-
-        $this->load->library("form_validation");
-
-        // Kurallar yazilir..
-        $this->form_validation->set_rules("title", "Başlık", "required|trim");
-
-        $this->form_validation->set_message(
-            array(
-                "required"  => "<b>{field}</b> alanı doldurulmalıdır"
-            )
-        );
-
-        // Form Validation Calistirilir..
-        // TRUE - FALSE
-        $validate = $this->form_validation->run();
-
-        // Monitör Askısı
-        // monitor-askisi
-
-        if($validate){
-
-            $update = $this->reference_model->update(
-                array(
-                    "id"    => $id
-                ),
-                array(
-                    "title"         => $this->input->post("title"),
-                    "description"   => $this->input->post("description"),
-                    "url"           => convertToSEO($this->input->post("title")),
-                )
-            );
-
-            // TODO Alert sistemi eklenecek...
-            if($update){
-
-                $alert = array(
-                    "title" => "İşlem Başarılı",
-                    "text" => "Kayıt başarılı bir şekilde güncellendi",
-                    "type"  => "success"
-                );
-
-            } else {
-
-                $alert = array(
-                    "title" => "İşlem Başarılı",
-                    "text" => "Güncelleme sırasında bir problem oluştu",
-                    "type"  => "error"
-                );
-
-
-            }
-
-            $this->session->set_flashdata("alert", $alert);
-            redirect(base_url("product"));
-
-        } else {
-
-            $viewData = new stdClass();
-
-            /** Tablodan Verilerin Getirilmesi.. */
-            $item = $this->reference_model->get(
-                array(
-                    "id"    => $id,
-                )
-            );
-
-            /** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
-            $viewData->viewFolder = $this->viewFolder;
-            $viewData->subViewFolder = "update";
-            $viewData->form_error = true;
-            $viewData->item = $item;
-
-            $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
-        }
-
-        // Başarılı ise
-        // Kayit işlemi baslar
-        // Başarısız ise
-        // Hata ekranda gösterilir...
-
-    }
-
     public function update($id){
 
         $this->load->library("form_validation");
 
         // Kurallar yazilir..
-
-        $references_type = $this->input->post("references_type");
-
-        if($references_type == "video"){
-
-            $this->form_validation->set_rules("video_url", "Video URL", "required|trim");
-
-        }
 
         $this->form_validation->set_rules("title", "Başlık", "required|trim");
 
@@ -292,8 +201,6 @@ class References extends CI_Controller
 
         //Upload süreci burasıdır
         
-        if($references_type == "image"){
-
         if ($_FILES["img_url"] ["name"] !== ""){
 
             $file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)) . "." . pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
@@ -314,17 +221,14 @@ class References extends CI_Controller
                 "title"         => $this->input->post("title"),
                 "description"   => $this->input->post("description"),
                 "url"           => convertToSEO($this->input->post("title")),
-                "references_type"     => $references_type,
                 "img_url"       => $uploaded_file,
-                "video_url"     => "#",
-                
             );
 
         } else {
 
             $alert = array(
                 "title" => "İşlem Başarısız",
-                "text" => "Görsel yüklenirken bir problem oluştu",
+                "text" => "Görsel yüklenirken bir problem oluştu.",
                 "type"  => "error"
             );   
 
@@ -337,7 +241,7 @@ class References extends CI_Controller
         }
         
     }   else {
-
+        //resim seçilmemişse böyle bir güncelleme yapıcaz
         $data =array(
             "title"         => $this->input->post("title"),
             "description"   => $this->input->post("description"),
@@ -346,18 +250,6 @@ class References extends CI_Controller
 
     }
 
-        } else if($references_type == "video"){
-
-            $data =array(
-                "title"         => $this->input->post("title"),
-                "description"   => $this->input->post("description"),
-                "url"           => convertToSEO($this->input->post("title")),
-                "references_type"     => $references_type,
-                "img_url"       => "#",
-                "video_url"     => $this->input->post("video_url"),
-            );
-
-        }
 
             $update = $this->reference_model->update(array("id"    => $id ),$data);
 
@@ -392,7 +284,6 @@ class References extends CI_Controller
             $viewData->viewFolder = $this->viewFolder;
             $viewData->subViewFolder = "update";
             $viewData->form_error = true;
-            $viewData->references_type = $references_type;
 
             /** Tablodan Verilerin Getirilmesi.. */
             $viewData->item = $this->reference_model->get(

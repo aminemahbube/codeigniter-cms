@@ -43,8 +43,7 @@
                                     <img width="75" src="<?php echo base_url("uploads/$viewFolder/$item->img_url"); ?>"
                                         alt="" class="img-rounded">
                                 </td>
-                                <td>
-                                    <center>
+                                <td class="text-center">
                                     <input 
                                     data-url="<?php echo base_url("references/isActiveSetter/$item->id"); ?>"
                                     class="isActive"
@@ -53,7 +52,7 @@
                                     data-color="#10c469"  
                                     <?php echo ($item->isActive) ? "checked" : ""; ?>
                                     />
-							    </td></center>
+							    </td>
                                 <td class="order">
                                     <a href="<?php echo base_url("references/update_form/$item->id"); ?>" class="btn btn-primary btn-sm btn-outline "><i class="fa fa-pencil-square"></i> Düzenle</a>
 								<button 

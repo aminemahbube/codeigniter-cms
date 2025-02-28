@@ -40,7 +40,7 @@
                                 <td><?php echo $item->url; ?></td>
                                 <!-- <td><?php //echo $item->description; ?></td> -->
                                 <td class="w50 text-center"><?php echo $item->news_type; ?></td>
-                                <td>
+                                <td class="text-center">
                                     <?php if($item->news_type == "image") { ?>
                                         <div style="text-align: center;">
                                         <img width="75" src="<?php echo base_url("uploads/$viewFolder/$item->img_url"); ?>"
@@ -48,7 +48,6 @@
                                         class="img-rounded">
                                     
                                     <?php } if ($item->news_type == "video") { ?>
-                                    <center>
                                     <iframe
                                         height="75" width="225"
                                         src="<?php echo $item->video_url; ?>"
@@ -56,11 +55,9 @@
                                         allow="encrypted-media"
                                         allowfullscreen>
                                     </iframe>
-                                    </center>
                                     <?php } ?>
                                 </td>
-                                <td>
-                                    <center>
+                                <td class="text-center">
                                     <input 
                                     data-url="<?php echo base_url("news/isActiveSetter/$item->id"); ?>"
                                     class="isActive"
@@ -69,7 +66,7 @@
                                     data-color="#10c469"  
                                     <?php echo ($item->isActive) ? "checked" : ""; ?>
                                     />
-							    </td></center>
+							    </td>
                                 <td class="order">
                                     <a href="<?php echo base_url("news/update_form/$item->id"); ?>" class="btn btn-primary btn-sm btn-outline "><i class="fa fa-pencil-square"></i> Düzenle</a>
 								<button 
